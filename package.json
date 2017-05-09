@@ -16,12 +16,10 @@
     "express": "*",
     "helmet": "*",
     "jsonwebtoken": "*",
+    "mongoose": "*",
+    "mongoose-unique-validator": "*",
     "passport": "*",
-    "passport-jwt": "*",
-    "pg": "*",
-    "pg-hstore": "*",
-    "sequelize": "*"
-
+    "passport-jwt": "*"
   },
   "devDependencies": {
     "supertest": "*",
