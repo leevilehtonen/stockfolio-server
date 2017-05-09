@@ -1,4 +1,13 @@
-module.exports = {
-    port : process.env.PORT || 3000,
-    saltRounds : 10
+const crypto = require('crypto');
+
+const generateSecret = (bytes) => {
+    return crypto.randomBytes(bytes).toString('base64');
 }
+
+module.exports = {
+    port: process.env.PORT || 3000,
+    saltRounds: 10,
+    database: process.env.MONGODB_URI || 'mongodb://localhost:27017/stockfolio',
+    secret: process.env.SECRET || generateSecret(256)
+}
+

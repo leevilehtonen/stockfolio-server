@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bcryptjs": "*",
+    "bluebird": "*",
     "body-parser": "*",
     "cookie-parser": "*",
     "cors": "*",

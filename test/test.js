@@ -3,8 +3,8 @@ const should = require('should');
 const app = require('../app');
 const request = supertest.agent(app.listen());
 
-describe("Basic unit test", () => {
-    it('should return home', (done) => {
+describe("Basic access test", () => {
+    it('should return invalid endpoint', (done) => {
         request
         .get('/')
         .expect('Content-type',/json/)
