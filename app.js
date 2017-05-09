@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send('Invalid entrypoint');
+    res.json('Invalid entrypoint');
 })
 
 // Listen to port
