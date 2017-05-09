@@ -31,10 +31,25 @@ mongoose.connection.once('open', function() {
         stocks:[]
     });
 
-    
-    User.createUser(testUser, (err) => {
+    let stockA = {
+        stockId: 'ABC',
+        amount: 10
+    }
 
+    let stockB = {
+        stockId: 'ABC',
+        amount: 12
+    }
+    let stockC = {
+        stockId: 'DEF',
+        amount: 10
+    }
+            
+    User.removeStock(testUser, stockA, (err, res) => {
+        console.log(res);
     });
+
+
 
 
 

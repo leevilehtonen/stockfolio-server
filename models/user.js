@@ -25,8 +25,18 @@ const userSchema = mongoose.Schema({
     },
     stocks:[
         {
-            stockId:String,
-            amount:Number
+            stockId:{
+                type: String,
+                required: true,
+                unique: true,
+                uniqueCaseInsensitive: true,
+                uppercase: true,
+                index: true
+            },
+            amount:{
+                type: Number,
+                min: 0
+            }
         }
     ]
 });
@@ -53,4 +63,15 @@ module.exports.createUser = (newUser, callback) => {
             newUser.save(callback);
         });
     });
+}
+
+module.exports.addStock = (user, stock, callback) => {
+    const query = {username: user.username};
+    const update = {stocks: stock};
+    User.findOneAndUpdate(query, {$addToSet: update }, callback);
+}
+module.exports.removeStock = (user, stock, callback) => {
+    const query = { username: user.username };
+    const update = { stocks: {stockId: stock.stockId}};
+    User.findOneAndUpdate(query,{ $pull: update },callback);
 }
