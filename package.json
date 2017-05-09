@@ -1,0 +1,45 @@
+{
+  "name": "stockfolio-server",
+  "version": "0.0.1",
+  "description": "Node web app for managing your stock portfolio (server)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "cors": "*",
+    "csurf": "*",
+    "express": "*",
+    "helmet": "*",
+    "jsonwebtoken": "*",
+    "passport": "*",
+    "passport-jwt": "*",
+    "pg": "*",
+    "pg-hstore": "*",
+    "sequelize": "*"
+
+  },
+  "devDependencies": {
+    "supertest": "*",
+    "mocha": "*",
+    "nodemon": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leevilehtonen/stockfolio-server.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "Leevi Lehtonen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leevilehtonen/stockfolio-server/issues"
+  },
+  "homepage": "https://github.com/leevilehtonen/stockfolio-server#readme"
+}
