@@ -1,11 +1,11 @@
 const supertest = require('supertest');
 const should = require('should');
-
-const server = supertest.agent('http://localhost:3000');
+const app = require('../app');
+const request = supertest.agent(app.listen());
 
 describe("Basic unit test", () => {
     it('should return home', (done) => {
-        server
+        request
         .get('/')
         .expect('Content-type',/json/)
         .expect(200)
