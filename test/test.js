@@ -1,6 +1,6 @@
-const supertest = require('supertest');
-const should = require('should');
-const app = require('../app');
+import supertest from'supertest';
+import should from 'should';
+import app from '../src/app';
 const request = supertest.agent(app.listen());
 
 describe("Basic access test", () => {

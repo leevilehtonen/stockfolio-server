@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const uniqueValidator = require('mongoose-unique-validator');
-const config = require('../config/data');
+import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
+import uniqueValidator from 'mongoose-unique-validator';
+import config from '../config/data';
 
 const userSchema = mongoose.Schema({
 

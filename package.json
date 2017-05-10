@@ -4,8 +4,10 @@
   "description": "Node web app for managing your stock portfolio (server)",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha",
-    "start": "node app"
+    "test": "mocha --compilers js:babel-register",
+    "build": "babel src -d dist",
+    "start": "node dist/app.js",
+    "server": "nodemon app.js --exec babel-node"
   },
   "dependencies": {
     "bcryptjs": "*",
@@ -23,10 +25,13 @@
     "passport-jwt": "*"
   },
   "devDependencies": {
-    "supertest": "*",
+    "babel-cli": "*",
+    "babel-preset-env": "*",
+    "babel-register": "*",
     "mocha": "*",
+    "nodemon": "*",
     "should": "*",
-    "nodemon": "*"
+    "supertest": "*"
   },
   "repository": {
     "type": "git",

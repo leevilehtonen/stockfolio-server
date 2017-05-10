@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+import crypto from 'crypto';
 
 const generateSecret = (bytes) => {
     return crypto.randomBytes(bytes).toString('base64');
