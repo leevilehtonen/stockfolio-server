@@ -7,7 +7,8 @@ import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 import config from './config/data';
 import User from './models/user';
-
+import users from './routes/users';
+import cors from 'cors';
 // Initialize app
 let app = express();
 
@@ -24,6 +25,8 @@ mongoose.connection.once('open', function () {
     console.log('Connected to mongoDB at ' + config.database);
 });
 
+app.use(cors());
+app.use('/api/users', users);
 // Default routes
 app.get('*', (req, res) => {
     res.send('Invalid entrypoint');

@@ -5,7 +5,7 @@ const generateSecret = (bytes) => {
 }
 
 module.exports = {
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     saltRounds: 10,
     database: process.env.MONGODB_URI || 'mongodb://localhost:27017/stockfolio',
     secret: process.env.SECRET || generateSecret(256)
