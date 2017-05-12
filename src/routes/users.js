@@ -47,7 +47,7 @@ router.post('/authenticate', (req, res, next) => {
             }
             let payload = {
                 "sub": user._id,
-                "name": user.name,
+                "name": user.username,
             }
             if (isMatch) {
                 const token = jwt.sign(payload, config.secret, {
@@ -57,12 +57,6 @@ router.post('/authenticate', (req, res, next) => {
                 res.json({
                     success: true,
                     token: `JWT ${token}`,
-                    user: {
-                        id: user._id,
-                        name: user.name,
-                        username: user.username,
-                        email: user.email,
-                    },
                     msg: 'Logged in'
                 });
             } else {
