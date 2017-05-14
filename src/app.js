@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import passport from 'passport';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
@@ -24,6 +25,10 @@ mongoose.connection.on('error', console.error.bind(console, 'Connection error:')
 mongoose.connection.once('open', function () {
     console.log('Connected to mongoDB at ' + config.database);
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/authentication')(passport);
 
 app.use(cors());
 app.use('/api/users', users);
