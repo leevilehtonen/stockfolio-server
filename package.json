@@ -22,7 +22,11 @@
     "mongoose": "*",
     "mongoose-unique-validator": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "request":"*",
+    "request-promise": "*",
+    "yahoo-finance": "*"
+
   },
   "devDependencies": {
     "babel-cli": "*",

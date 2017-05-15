@@ -9,6 +9,7 @@ import bluebird from 'bluebird';
 import config from './config/data';
 import User from './models/user';
 import users from './routes/users';
+import stocks from './routes/stocks'
 import cors from 'cors';
 // Initialize app
 let app = express();
@@ -32,10 +33,9 @@ require('./config/authentication')(passport);
 
 app.use(cors());
 app.use('/api/users', users);
+app.use('/api/stocks', stocks);
 // Default routes
-app.get('*', (req, res) => {
-    res.send('Invalid entrypoint');
-})
+
 // Listen to port
 app.listen(config.port, () => {
     console.log('Server started on port ' + config.port);
