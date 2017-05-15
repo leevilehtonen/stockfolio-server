@@ -34,8 +34,11 @@ require('./config/authentication')(passport);
 app.use(cors());
 app.use('/api/users', users);
 app.use('/api/stocks', stocks);
-// Default routes
 
+// Default routes
+app.get('/', (req,res,next) => {
+    res.send('Invalid endpoint');
+})
 // Listen to port
 app.listen(config.port, () => {
     console.log('Server started on port ' + config.port);
