@@ -3,19 +3,6 @@ import bcrypt from 'bcryptjs';
 import uniqueValidator from 'mongoose-unique-validator';
 import config from '../config/data';
 
-const stockSchema = mongoose.Schema({
-    stockId: {
-        type: String,
-        required: true,
-        uppercase: true,
-        unique:true,
-        sparse: true,
-    },
-    amount: {
-        type: Number,
-        min: 0
-    }
-});
 
 const userSchema = mongoose.Schema({
 
@@ -38,7 +25,19 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    stocks: [stockSchema]
+    stocks: [{
+        stockId: {
+            type: String,
+            required: true,
+            uppercase: true,
+//            unique: true,
+  //          sparse: true
+        },
+        amount: {
+            type: Number,
+            min: 0
+        }
+    }]
 });
 
 mongoose.plugin(uniqueValidator, { message: 'Error, expected {PATH} to be unique.' });
@@ -67,18 +66,19 @@ module.exports.createUser = (newUser, callback) => {
 
 module.exports.comparePasswords = (password, hash, callback) => {
     bcrypt.compare(password, hash, (err, isMatch) => {
-        if(err) throw err;
+        if (err) throw err;
         callback(null, isMatch);
     });
 }
-
-module.exports.addStock = (user, stock, callback) => {
-    const query = { username: user.username };
+module.exports.addStock = (username, stock, callback) => {
+    const query = { username: username };
     const update = { stocks: stock };
-    User.findOneAndUpdate(query, { $addToSet: update }, callback);
+
+    User.findOneAndUpdate(query, { $push: update }, callback)
 }
 module.exports.removeStock = (user, stock, callback) => {
     const query = { username: user.username };
     const update = { stocks: { _id: stock._id } };
+
     User.findOneAndUpdate(query, { $pull: update }, callback);
 }

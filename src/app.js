@@ -35,8 +35,13 @@ app.use(cors());
 app.use('/api/users', users);
 app.use('/api/stocks', stocks);
 
+
 // Default routes
 app.get('/', (req,res,next) => {
+    User.addStock('tester', { stockId:'ABC', amount:'10'}, (err, res) => {
+        
+    });
+
     res.send('Invalid endpoint');
 })
 // Listen to port

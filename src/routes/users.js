@@ -50,7 +50,7 @@ router.post('/authenticate', (req, res, next) => {
                 "name": user.username,
             }
             if (isMatch) {
-                const token = jwt.sign(payload, config.secret, {
+                const token = jwt.sign(payload, config.key, {
                     expiresIn: 604800
                 });
 
@@ -68,6 +68,21 @@ router.post('/authenticate', (req, res, next) => {
 
 router.get('/validate', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     res.json({ valid: true });
+});
+
+router.post('/stocks/add', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    const user = req.body.user;
+    const symbol = req.body.symbol;
+    const count = req.body.count;
+    User.addStock(user, { stockId:symbol, amount:count}, (err, result) => {
+
+        if (err) {
+            res.json({ success: false });
+        }
+        else {
+            res.json({ success: true });
+        }
+    });
 });
 
 module.exports = router;
