@@ -1,6 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
+import yahooFinance from 'yahoo-finance';
 import config from '../config/data';
 import User from '../models/user';
 
@@ -74,7 +75,7 @@ router.post('/stocks/add', passport.authenticate('jwt', { session: false }), (re
     const user = req.user.username;
     const symbol = req.body.symbol;
     const count = req.body.count;
-    User.addStock(user, { stockId:symbol, amount:count}, (err, result) => {
+    User.addStock(user, { stockId: symbol, amount: count }, (err, result) => {
 
         if (err) {
             res.json({ success: false });
@@ -85,6 +86,20 @@ router.post('/stocks/add', passport.authenticate('jwt', { session: false }), (re
     });
 });
 
+router.post('/stocks/delete', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    const username = req.user.username;
+    const id = req.body.id;
+    User.removeStock(username, id, (err, result) => {
+        if (err) {
+            res.json({ success: false });
+        }
+        else {
+            res.json({ success: true });
+        }
+    });
+});
+
+
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     let user = {
         username: req.user.username,
@@ -92,8 +107,54 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), (req, r
         email: req.user.email,
         stocks: req.user.stocks.length
     }
-    res.json({success:true, user});
+    res.json({ success: true, user });
 
 });
+
+let queryFields = ['a', 'b', 's', 'n', 'p', 'd', 'c1', 'p2', 'g', 'h', 'x', 'e1']
+
+
+router.get('/stocks', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    let stocks = req.user.stocks;
+    let stockIds = stocks.map((item, index) => {
+        return item.stockId;
+    });
+    let amounts = stocks.map((item, index) => {
+        return item.amount;
+    });
+    let objectIds = stocks.map((item, index) => {
+        return item._id;
+    });
+
+
+    yahooFinance.snapshot({
+        symbols: stockIds,
+        fields: queryFields
+    }).then((snapshot) => {
+        let data = Object.keys(snapshot).map((item) => {
+
+            return snapshot[item];
+        });
+        data.map((item, index) => {
+            return item.amount = amounts[index];
+        });
+        data.map((item, index) => {
+            return item.id = objectIds[index];
+        });
+        data.map((item, index) => {
+            let val = (item.bid) ? (item.amount * item.bid) : (item.amount * item.previousClose)
+            return item.currentValue = val;
+        });
+
+        let response = { success: true, stocks: data };
+        res.json(response);
+    }).catch((err) => {
+        let response = { success: true, err: err };
+        res.json(response);
+    });
+
+
+});
+
 
 module.exports = router;

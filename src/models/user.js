@@ -76,9 +76,9 @@ module.exports.addStock = (username, stock, callback) => {
 
     User.findOneAndUpdate(query, { $push: update }, callback)
 }
-module.exports.removeStock = (user, stock, callback) => {
-    const query = { username: user.username };
-    const update = { stocks: { _id: stock._id } };
+module.exports.removeStock = (username, id, callback) => {
+    const query = { username: username };
+    const update = { stocks: { _id: id } };
 
     User.findOneAndUpdate(query, { $pull: update }, callback);
 }

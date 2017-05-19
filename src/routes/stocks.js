@@ -19,7 +19,8 @@ router.get('/quote', (req, res, next) => {
         Object.assign(response, snapshot);
         res.json(response);
     }).catch((err) => {
-        res.json(err);
+        let response = { success: true, err: err };
+        res.json(response);
     });
 })
 
