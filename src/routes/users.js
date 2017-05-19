@@ -71,7 +71,7 @@ router.get('/validate', passport.authenticate('jwt', { session: false }), (req, 
 });
 
 router.post('/stocks/add', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-    const user = req.body.user;
+    const user = req.user.username;
     const symbol = req.body.symbol;
     const count = req.body.count;
     User.addStock(user, { stockId:symbol, amount:count}, (err, result) => {
@@ -83,6 +83,17 @@ router.post('/stocks/add', passport.authenticate('jwt', { session: false }), (re
             res.json({ success: true });
         }
     });
+});
+
+router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+    let user = {
+        username: req.user.username,
+        name: req.user.name,
+        email: req.user.email,
+        stocks: req.user.stocks.length
+    }
+    res.json({success:true, user});
+
 });
 
 module.exports = router;
