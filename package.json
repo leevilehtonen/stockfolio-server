@@ -19,14 +19,13 @@
     "express": "*",
     "helmet": "*",
     "jsonwebtoken": "*",
-    "mongoose": "*",
+    "mongoose": "^4.10.0",
     "mongoose-unique-validator": "*",
     "passport": "*",
     "passport-jwt": "*",
-    "request":"*",
+    "request": "*",
     "request-promise": "*",
     "yahoo-finance": "*"
-
   },
   "devDependencies": {
     "babel-cli": "*",

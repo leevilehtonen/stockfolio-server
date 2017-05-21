@@ -6,7 +6,8 @@ export function getDayHistoryData(symbol, res) {
     const options = {
         uri: 'https://chartapi.finance.yahoo.com/instrument/1.0/' + symbol + '/chartdata;type=quote;range=1d/json',
         callback: 'finance_charts_json_callback',
-        json: true
+        json: true,
+        timeout:2000
     };
     rp(options)
         .then((snapshot) => {

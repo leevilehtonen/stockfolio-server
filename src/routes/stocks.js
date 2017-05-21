@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config/data';
 import User from '../models/user';
 import yahooFinance from 'yahoo-finance';
+
 import * as parsers from './stockDataParser';
 
 const router = express.Router();
