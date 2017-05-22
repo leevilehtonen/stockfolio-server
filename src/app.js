@@ -15,10 +15,10 @@ import cors from 'cors';
 let app = express();
 
 // Middleware
-app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
+
 
 // Connect to database
 mongoose.Promise = bluebird;
