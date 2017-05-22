@@ -157,4 +157,5 @@ router.get('/stocks', passport.authenticate('jwt', { session: false }), (req, re
 });
 
 
+
 module.exports = router;

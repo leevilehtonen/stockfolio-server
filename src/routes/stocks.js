@@ -4,14 +4,14 @@ import jwt from 'jsonwebtoken';
 import config from '../config/data';
 import User from '../models/user';
 import yahooFinance from 'yahoo-finance';
-
+import passport from 'passport';
 import * as parsers from './stockDataParser';
 
 const router = express.Router();
 
-let queryFields = ['s', 'n', 'a', 'b', 'p', 'o', 'y', 'd', 'r1', 'q', 'c1', 'p2', 'd1', 'g', 'h', 'l', 'k', 'j','x', 'e1']
+let queryFields = ['s', 'n', 'a', 'b', 'p', 'o', 'y', 'd', 'r1', 'q', 'c1', 'p2', 'd1', 'g', 'h', 'l', 'k', 'j', 'x', 'e1']
 
-router.get('/quote', (req, res, next) => {
+router.get('/quote', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     yahooFinance.snapshot({
         symbol: req.query.query,
         fields: queryFields
@@ -25,7 +25,7 @@ router.get('/quote', (req, res, next) => {
     });
 })
 
-router.get('/quote/history', (req, res, next) => {
+router.get('/quote/history', passport.authenticate('jwt', { session: false }), (req, res, next) => {
 
     const symbol = req.query.query;
     const time = req.query.time;
@@ -58,7 +58,7 @@ router.get('/quote/history', (req, res, next) => {
     }
 });
 
-router.get('/find', (req, res, next) => {
+router.get('/find', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     var options = {
         uri: 'http://d.yimg.com/aq/autoc',
         qs: {

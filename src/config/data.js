@@ -1,7 +1,8 @@
 import crypto from 'crypto';
 
 const generateSecret = (bytes) => {
-    return crypto.randomBytes(bytes).toString('base64');
+    const sec = crypto.randomBytes(bytes).toString('base64');
+    return sec;
 }
 
 module.exports = {
@@ -9,6 +10,6 @@ module.exports = {
     saltRounds: 10,
     database: process.env.MONGODB_URI || 'mongodb://localhost:27017/stockfolio',
     secret: process.env.SECRET || generateSecret(256),
-    key: 'MYKEY'
+    key: process.env.KEY || generateSecret(256),
 }
 
