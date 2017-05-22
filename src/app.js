@@ -19,6 +19,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
+app.options('*', cors());
 
 // Connect to database
 mongoose.Promise = bluebird;
