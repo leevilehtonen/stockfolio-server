@@ -8,6 +8,7 @@ import User from '../models/user';
 const router = express.Router();
 
 router.post('/register', (req, res, next) => {
+    console.log(req.body);
 
     let newUser = new User({
         name: req.body.name,
