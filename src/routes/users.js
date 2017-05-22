@@ -106,7 +106,7 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), (req, r
         username: req.user.username,
         name: req.user.name,
         email: req.user.email,
-        stocks: req.user.stocks.length
+        stocks: req.user.stocks.length || 0
     }
     res.json({ success: true, user });
 
@@ -117,6 +117,11 @@ let queryFields = ['a', 'b', 's', 'n', 'p', 'd', 'c1', 'p2', 'g', 'h', 'x', 'e1'
 
 router.get('/stocks', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     let stocks = req.user.stocks;
+
+    if(!stocks || stocks.length == 0) {
+        res.json({success: true});
+    }
+
     let stockIds = stocks.map((item, index) => {
         return item.stockId;
     });
