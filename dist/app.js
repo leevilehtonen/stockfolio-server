@@ -16,6 +16,10 @@ var _cookieParser = require('cookie-parser');
 
 var _cookieParser2 = _interopRequireDefault(_cookieParser);
 
+var _passport = require('passport');
+
+var _passport2 = _interopRequireDefault(_passport);
+
 var _helmet = require('helmet');
 
 var _helmet2 = _interopRequireDefault(_helmet);
@@ -36,6 +40,18 @@ var _user = require('./models/user');
 
 var _user2 = _interopRequireDefault(_user);
 
+var _users = require('./routes/users');
+
+var _users2 = _interopRequireDefault(_users);
+
+var _stocks = require('./routes/stocks');
+
+var _stocks2 = _interopRequireDefault(_stocks);
+
+var _cors = require('cors');
+
+var _cors2 = _interopRequireDefault(_cors);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Initialize app
@@ -45,6 +61,8 @@ var app = (0, _express2.default)();
 app.use((0, _helmet2.default)());
 app.use(_bodyParser2.default.json());
 app.use((0, _cookieParser2.default)());
+app.use((0, _cors2.default)());
+app.options('*', (0, _cors2.default)());
 
 // Connect to database
 _mongoose2.default.Promise = _bluebird2.default;
@@ -54,9 +72,18 @@ _mongoose2.default.connection.once('open', function () {
     console.log('Connected to mongoDB at ' + _data2.default.database);
 });
 
+app.use(_passport2.default.initialize());
+app.use(_passport2.default.session());
+require('./config/authentication')(_passport2.default);
+
+app.use('/api/users', _users2.default);
+app.use('/api/stocks', _stocks2.default);
+
 // Default routes
-app.get('*', function (req, res) {
-    res.send('Invalid entrypoint');
+app.get('/', function (req, res, next) {
+    _user2.default.addStock('tester', { stockId: 'ABC', amount: '10' }, function (err, res) {});
+
+    res.send('Invalid endpoint');
 });
 // Listen to port
 app.listen(_data2.default.port, function () {

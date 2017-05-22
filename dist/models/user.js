@@ -32,7 +32,8 @@ var userSchema = _mongoose2.default.Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -42,10 +43,7 @@ var userSchema = _mongoose2.default.Schema({
         stockId: {
             type: String,
             required: true,
-            unique: true,
-            uniqueCaseInsensitive: true,
-            uppercase: true,
-            index: true
+            uppercase: true
         },
         amount: {
             type: Number,
@@ -78,13 +76,21 @@ module.exports.createUser = function (newUser, callback) {
     });
 };
 
-module.exports.addStock = function (user, stock, callback) {
-    var query = { username: user.username };
-    var update = { stocks: stock };
-    User.findOneAndUpdate(query, { $addToSet: update }, callback);
+module.exports.comparePasswords = function (password, hash, callback) {
+    _bcryptjs2.default.compare(password, hash, function (err, isMatch) {
+        if (err) throw err;
+        callback(null, isMatch);
+    });
 };
-module.exports.removeStock = function (user, stock, callback) {
-    var query = { username: user.username };
-    var update = { stocks: { stockId: stock.stockId } };
+module.exports.addStock = function (username, stock, callback) {
+    var query = { username: username };
+    var update = { stocks: stock };
+
+    User.findOneAndUpdate(query, { $push: update }, callback);
+};
+module.exports.removeStock = function (username, id, callback) {
+    var query = { username: username };
+    var update = { stocks: { _id: id } };
+
     User.findOneAndUpdate(query, { $pull: update }, callback);
 };
