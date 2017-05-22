@@ -15,6 +15,7 @@ import cors from 'cors';
 let app = express();
 
 // Middleware
+app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -31,7 +32,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/authentication')(passport);
 
-app.use(cors());
+
 app.use('/api/users', users);
 app.use('/api/stocks', stocks);
 
