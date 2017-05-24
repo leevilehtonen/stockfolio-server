@@ -76,12 +76,13 @@ app.use(_passport2.default.initialize());
 app.use(_passport2.default.session());
 require('./config/authentication')(_passport2.default);
 
+//Routing
 app.use('/api/users', _users2.default);
 app.use('/api/stocks', _stocks2.default);
 
 // Default routes
 app.get('/', function (req, res, next) {
-    res.send('Invalid endpoint');
+    res.redirect('https://github.com/leevilehtonen/stockfolio-server');
 });
 // Listen to port
 app.listen(_data2.default.port, function () {

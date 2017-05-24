@@ -4,13 +4,12 @@ import app from '../src/app';
 const request = supertest.agent(app.listen());
 
 describe("Basic access test", () => {
-    it('should return invalid endpoint', (done) => {
+    it('should redirect to github', (done) => {
         request
         .get('/')
-        .expect('Content-type',/json/)
-        .expect(200)
+        .expect(302)
         .end((err, res) => {
-            res.status.should.equal(200);
+            res.status.should.equal(302);
             done();
         });
     });
