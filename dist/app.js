@@ -52,10 +52,6 @@ var _cors = require('cors');
 
 var _cors2 = _interopRequireDefault(_cors);
 
-var _csurf = require('csurf');
-
-var _csurf2 = _interopRequireDefault(_csurf);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Initialize app
@@ -67,11 +63,6 @@ app.use(_bodyParser2.default.json());
 app.use((0, _cookieParser2.default)(_data2.default.key));
 app.use((0, _cors2.default)());
 app.options('*', (0, _cors2.default)());
-app.use((0, _csurf2.default)({ cookie: true }));
-app.use(function (req, res, next) {
-    res.cookie("XSRF-TOKEN", req.csrfToken());
-    return next();
-});
 
 // Connect to database
 _mongoose2.default.Promise = _bluebird2.default;

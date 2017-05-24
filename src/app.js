@@ -11,7 +11,6 @@ import User from './models/user';
 import users from './routes/users';
 import stocks from './routes/stocks'
 import cors from 'cors';
-import csurf from 'csurf';
 // Initialize app
 let app = express();
 
@@ -21,12 +20,6 @@ app.use(bodyParser.json());
 app.use(cookieParser(config.key));
 app.use(cors());
 app.options('*', cors());
-app.use(csurf({ cookie: true }));
-app.use((req, res, next) => {
-    res.cookie("XSRF-TOKEN", req.csrfToken());
-    return next();
-})
-
 
 // Connect to database
 mongoose.Promise = bluebird;
