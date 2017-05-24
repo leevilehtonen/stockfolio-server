@@ -11,15 +11,22 @@ import User from './models/user';
 import users from './routes/users';
 import stocks from './routes/stocks'
 import cors from 'cors';
+import csurf from 'csurf';
 // Initialize app
 let app = express();
 
 // Middleware
 app.use(helmet());
 app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(cookieParser(config.key));
 app.use(cors());
 app.options('*', cors());
+app.use(csurf({ cookie: true }));
+app.use((req, res, next) => {
+    res.cookie("XSRF-TOKEN", req.csrfToken());
+    return next();
+})
+
 
 // Connect to database
 mongoose.Promise = bluebird;
@@ -39,11 +46,7 @@ app.use('/api/stocks', stocks);
 
 
 // Default routes
-app.get('/', (req,res,next) => {
-    User.addStock('tester', { stockId:'ABC', amount:'10'}, (err, res) => {
-        
-    });
-
+app.get('/', (req, res, next) => {
     res.send('Invalid endpoint');
 })
 // Listen to port
