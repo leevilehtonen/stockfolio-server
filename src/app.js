@@ -33,14 +33,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/authentication')(passport);
 
-
+//Routing
 app.use('/api/users', users);
 app.use('/api/stocks', stocks);
 
 
 // Default routes
 app.get('/', (req, res, next) => {
-    res.send('Invalid endpoint');
+    res.redirect('https://github.com/leevilehtonen/stockfolio-server');
 })
 // Listen to port
 app.listen(config.port, () => {
