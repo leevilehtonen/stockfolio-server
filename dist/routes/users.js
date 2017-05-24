@@ -73,7 +73,7 @@ router.post('/authenticate', function (req, res, next) {
                 "name": user.username
             };
             if (isMatch) {
-                var token = _jsonwebtoken2.default.sign(payload, _data2.default.key, {
+                var token = _jsonwebtoken2.default.sign(payload, _data2.default.secret, {
                     expiresIn: 604800
                 });
 

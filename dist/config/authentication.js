@@ -1,16 +1,23 @@
 'use strict';
 
-var JwtStrategy = require('passport-jwt').Strategy;
-var ExtractJwt = require('passport-jwt').ExtractJwt;
-var User = require('../models/user');
-var config = require('./data');
+var _passportJwt = require('passport-jwt');
+
+var _user = require('../models/user');
+
+var _user2 = _interopRequireDefault(_user);
+
+var _data = require('./data');
+
+var _data2 = _interopRequireDefault(_data);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = function (passport) {
     var opts = {};
-    opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
-    opts.secretOrKey = config.key;
-    passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
-        User.getUserById(jwt_payload.sub, function (err, user) {
+    opts.jwtFromRequest = _passportJwt.ExtractJwt.fromAuthHeader();
+    opts.secretOrKey = _data2.default.secret;
+    passport.use(new _passportJwt.Strategy(opts, function (jwt_payload, done) {
+        _user2.default.getUserById(jwt_payload.sub, function (err, user) {
             if (err) {
                 return done(err, false);
             }
