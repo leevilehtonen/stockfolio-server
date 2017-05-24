@@ -10,6 +10,9 @@
     "server": "nodemon src/app.js --exec babel-node"
   },
   "dependencies": {
+    "babel-cli": "*",
+    "babel-preset-env": "*",
+    "babel-register": "*",
     "bcryptjs": "*",
     "bluebird": "*",
     "body-parser": "*",
@@ -28,9 +31,6 @@
     "yahoo-finance": "*"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "babel-preset-env": "*",
-    "babel-register": "*",
     "mocha": "*",
     "nodemon": "*",
     "should": "*",
