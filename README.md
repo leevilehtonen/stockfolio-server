@@ -49,7 +49,7 @@ npm test
 For building production ready server:
 ```sh
 npm install
-npm build 
+npm run build 
 ```
 
 For building and running production ready server:
