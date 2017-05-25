@@ -1,6 +1,6 @@
 {
   "name": "stockfolio-server",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Node web app for managing your stock portfolio (server)",
   "main": "app.js",
   "scripts": {

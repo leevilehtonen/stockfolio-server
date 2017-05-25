@@ -25,7 +25,7 @@ app.options('*', cors());
 mongoose.Promise = bluebird;
 mongoose.connect(config.database);
 mongoose.connection.on('error', console.error.bind(console, 'Connection error:'));
-mongoose.connection.once('open', function () {
+mongoose.connection.once('open', function() {
     console.log('Connected to mongoDB at ' + config.database);
 });
 
