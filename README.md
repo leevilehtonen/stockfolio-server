@@ -1,7 +1,7 @@
 # stockfolio-server
 
 [![Build Status](https://travis-ci.org/leevilehtonen/stockfolio-server.svg?branch=master)](https://travis-ci.org/leevilehtonen/stockfolio-server)
-[![Dependency Status](https://david-dm.org/leevilehtonen/stockfolio-server.svg)](https://david-dm.org/leevilehtonen/stockfolio-client)
+[![Dependency Status](https://david-dm.org/leevilehtonen/stockfolio-server.svg)](https://david-dm.org/leevilehtonen/stockfolio-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Node web app for managing your stock portfolio (server)
