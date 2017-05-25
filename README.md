@@ -6,7 +6,7 @@
 
 Node web app for managing your stock portfolio (server)
 
-- [API](docs/API.md) - REST API docs, information abouts server routes
+- [API](docs/API.md) - REST API docs, information abouts server routes (in progress)
 - [Hours](https://docs.google.com/spreadsheets/d/1iS3zzA9LTFgh2s2CuXOBlqsfMP5bsVArIPT1dS3bYpY/edit?usp=sharing) - Working hours at Google Sheets
 
 ## Getting Started
