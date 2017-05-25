@@ -93,7 +93,7 @@ If you want to deliver your own copy of stockfolio, it's very easy to serve at H
 
 ## Contributing
 
-Make merge ready PR or contact me with feture suggestions.
+Make merge ready PR or contact me with feature suggestions.
 
 ## Authors
 
