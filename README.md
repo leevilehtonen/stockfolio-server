@@ -17,25 +17,24 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them
 
-```
-TODO
-```
+- [Node.js](https://nodejs.org/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [MongoDB](https://www.mongodb.com/) - MongoDB is an open-source, document database designed for ease of development and scaling.
 
 ### Installing
 
 A step by step series of examples that tell you have to get a development env running
 
-STEPS:
-
 ```sh
-npm install stockfolio-server --save
+git clone https://github.com/leevilehtonen/stockfolio-server.git //or with ssh
+cd stockfolio-server
+npm install
+npm run server // runs project using nodemon for easy development
+
 ```
 
 ```
-TODO
+npm start // creates production build and runs it
 ```
-
-DEMO...
 
 
 ## Running the tests
@@ -47,7 +46,19 @@ npm test
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system -TODO
+For building production ready server:
+```sh
+npm install
+npm build 
+```
+
+For building and running production ready server:
+```sh
+npm install
+npm start 
+```
+
+If you want to deliver your own copy of stockfolio, it's very easy to serve at Heroku
 
 ## Built With
 
@@ -82,7 +93,7 @@ Add additional notes about how to deploy this on a live system -TODO
 
 ## Contributing
 
-TODO-PRs
+Make merge ready PR or contact me with feture suggestions.
 
 ## Authors
 
@@ -96,9 +107,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* TODO
-* TODO
-* TODO
 
 
 
