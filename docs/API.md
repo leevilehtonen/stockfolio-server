@@ -10,7 +10,7 @@
 
   `POST`
   
-*  **URL Params**
+* **URL Params**
 
   None
 
