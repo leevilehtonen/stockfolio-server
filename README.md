@@ -9,6 +9,8 @@ Node web app for managing your stock portfolio (server)
 - [API](docs/API.md) - REST API docs, information abouts server routes (in progress)
 - [Hours](https://docs.google.com/spreadsheets/d/1iS3zzA9LTFgh2s2CuXOBlqsfMP5bsVArIPT1dS3bYpY/edit?usp=sharing) - Working hours at Google Sheets
 
+**NOTE: As Yahoo updated their finance API to v10, there is currently some issues retrieving the data, Stockfolio is depending on [yahoo-finance](https://github.com/pilwon/node-yahoo-finance) as data provider and people are working to get the module functional.**
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
