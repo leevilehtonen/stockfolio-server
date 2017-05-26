@@ -1,11 +1,11 @@
-# stockfolio-server
-
+# [stockfolio-server](https://stockfolio.leevilehtonen.com/)
 [![Build Status](https://travis-ci.org/leevilehtonen/stockfolio-server.svg?branch=master)](https://travis-ci.org/leevilehtonen/stockfolio-server)
 [![Dependency Status](https://david-dm.org/leevilehtonen/stockfolio-server.svg)](https://david-dm.org/leevilehtonen/stockfolio-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Node web app for managing your stock portfolio (server)
 
+- [Live demo](https://stockfolio.leevilehtonen.com/) - Live demo username: `tester`, password: `123456`
 - [API](docs/API.md) - REST API docs, information abouts server routes (in progress)
 - [Hours](https://docs.google.com/spreadsheets/d/1iS3zzA9LTFgh2s2CuXOBlqsfMP5bsVArIPT1dS3bYpY/edit?usp=sharing) - Working hours at Google Sheets
 
